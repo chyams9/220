@@ -1,6 +1,4 @@
 import pytest
-
-from hw1 import hello
 from tests import code_style
 
 total = 0
