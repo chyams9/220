@@ -1,7 +1,8 @@
 """
-Name: <your name goes here – first and last>
-<ProgramName>.py
+Name: Chris Hyams
+lab3.py
 """
+import math
 
 from graphics import *
 
@@ -30,11 +31,11 @@ def squares():
 
     # create a space to instruct user
     inst_pt = Point(width / 2, height - 10)
-    instructions = Text(inst_pt, "Click to move circle")
+    instructions = Text(inst_pt, "Click to move square")
     instructions.draw(win)
 
-    # builds a circle
-    shape = Circle(Point(50, 50), 20)
+    # builds a square
+    shape = Rectangle(Point(50, 50), Point(70, 70))
     shape.setOutline("red")
     shape.setFill("red")
     shape.draw(win)
@@ -42,13 +43,16 @@ def squares():
     # allows the user to click multiple times to move the circle
     for i in range(num_clicks):
         p = win.getMouse()
-        c = shape.getCenter()  # center of circle
+        shape = Rectangle(Point(p.getX() - 10, p.getY() - 10), (Point(p.getX() + 10, p.getY() + 10)))
+        shape.setOutline("red")
+        shape.setFill("red")
+        shape.draw(win)
 
-        # move amount is distance from center of circle to the
-        # point where the user clicked
-        dx = p.getX() - c.getX()
-        dy = p.getY() - c.getY()
-        shape.move(dx, dy)
+
+    instructions.undraw()
+    instructions.setText("Click to close")
+    instructions.draw(win)
+
 
     win.getMouse()
     win.close()
@@ -62,14 +66,43 @@ def rectangle():
          Print the perimeter and area of the rectangle.
     Formulas: area = (length)(width)   and    perimeter = 2(length+width)
     """
-    pass
+    p1 = win.getMouse()
+    p2 = win.getMouse()
+    r = rectangle(p1, p2)
+    length = abs(p1.getX - p2.getX)
+    width = abs(p1.getY - p2.getY)
+
+    area = length * width
+    area_text = Text(Point(20, 20), "The area is " + str(area))
+    area_text.draw(win)
+    ##
+    win.getMouse()
+    win.close()
+
+
+def circle():
+    p1 = win.getMouse()
+    p2 = win.getMouse()
+    x1 = p1.getX()
+    x2 = p2.getX()
+    y1 = p1.getX()
+    y2 = p2.getY()
+
+
+def pi2():
+    n = eval(input("Enter N: "))
+    acc = 0
+    for i in range():
+        num = 4 * ((-1) ** i)
+        denom = 1
+    print(math.pi - acc)
 
 
 def main():
-    squares()
-    # rectangle()
-    # circle()
-    # pi2()
+    # squares()
+    rectangle()
+    circle()
+    pi2()
 
 
 main()
